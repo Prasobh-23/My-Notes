@@ -6,7 +6,7 @@
   import Toast from 'svelte-toast';
   import { fade, fly, slide, scale } from 'svelte/transition';
   let database = [];
-  let dataPresent = false;
+ /*  let dataPresent = false; */
   let inputTitle = '';
   let inputText = '';
   let reminderActive = false;
@@ -30,7 +30,7 @@
       title: inputTitle,
       text: inputText,
     };
-    dataPresent = true;
+/*     dataPresent = true; */
     inputTitle = '';
     inputText = '';
     reminderActive = false;
@@ -42,7 +42,7 @@
       dataFromStore = currentStore;
     });
   };
-
+  
   const inputForReminder = (id) => {
     reminderActive = true;
     DataStore.subscribe((currentStore) => {
@@ -142,38 +142,36 @@
   {/if}
 </div>
 
-{#if dataPresent}
-  <div class="container-2">
-    {#each dataFromStore as data}
-      <div class="box">
-        <header class="header-align">
-          <h2 class="heading">{data.title}</h2>
-        </header>
-        <p class="paragraph">{data.text}</p>
-        <footer class="footer-align">
-          <img
-            on:click={() => moveToAchives(data.id)}
-            class="logos"
-            src="./image/ar.png"
-            alt="archive"
-          />
-          <img
-            on:click={() => deleteItem(data.id)}
-            class="logos"
-            src="./image/delete.png"
-            alt="delete"
-          />
-          <img
-            class="logos"
-            src="./image/remind.png"
-            alt="reminder"
-            on:click={inputForReminder(data.id)}
-          />
-        </footer>
-      </div>
-    {/each}
-  </div>
-{/if}
+<div class="container-2">
+  {#each $DataStore as data}
+    <div class="box">
+      <header class="header-align">
+        <h2 class="heading">{data.title}</h2>
+      </header>
+      <p class="paragraph">{data.text}</p>
+      <footer class="footer-align">
+        <img
+          on:click={() => moveToAchives(data.id)}
+          class="logos"
+          src="./image/ar.png"
+          alt="archive"
+        />
+        <img
+          on:click={() => deleteItem(data.id)}
+          class="logos"
+          src="./image/delete.png"
+          alt="delete"
+        />
+        <img
+          class="logos"
+          src="./image/remind.png"
+          alt="reminder"
+          on:click={inputForReminder(data.id)}
+        />
+      </footer>
+    </div>
+  {/each}
+</div>
 
 <style>
   @media (min-width: 700px) {
