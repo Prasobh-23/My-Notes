@@ -11,7 +11,7 @@
   let inputText = '';
   let reminderActive = false;
   let userId = '';
-  let dataFromStore;
+ /*  let dataFromStore; */
   let deletedItems = [];
   let deletedItem = {};
   let archivedItems = [];
@@ -38,9 +38,9 @@
     DataStore.update(() => {
       return database;
     });
-    DataStore.subscribe((currentStore) => {
+    /* DataStore.subscribe((currentStore) => {
       dataFromStore = currentStore;
-    });
+    }); */
   };
   
   const inputForReminder = (id) => {
